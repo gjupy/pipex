@@ -1,41 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gjupy <gjupy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/04 18:49:06 by gjupy             #+#    #+#             */
-/*   Updated: 2022/08/13 18:03:38 by gjupy            ###   ########.fr       */
+/*   Created: 2022/08/19 17:22:13 by gjupy             #+#    #+#             */
+/*   Updated: 2022/08/19 17:22:32 by gjupy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/pipex.h"
-
-/*
-opens in or out file, depending on the file var parameter
-and if there is here-doc
-*/
-void	open_file(char **argv, t_pipex *pipex, int file)
-{
-	if (file == in)
-	{
-		pipex->fd[0] = open(argv[1], O_RDONLY);
-		if (pipex->fd[0] == -1)
-			file_err(pipex, in);
-	}
-	else if (file == out)
-	{
-		if (pipex->here_doc == false)
-			pipex->fd[1] = open(argv[pipex->childs + 2],
-					O_WRONLY | O_CREAT | O_TRUNC, 0777);
-		else if (pipex->here_doc == true)
-			pipex->fd[1] = open(argv[pipex->childs + 2],
-						O_WRONLY | O_CREAT | O_APPEND, 0777);
-		if (pipex->fd[1] == -1)
-			file_err(pipex, out);
-	}
-}
+#include "../includes/pipex.h"
 
 char	*find_path_str(char **env)
 {
@@ -94,11 +69,11 @@ int	get_cmd(t_pipex *pipex)
 	{
 		tmp = ft_strjoin(pipex->pathnames[i], "/");
 		if (pipex->pathnames != NULL && tmp == NULL)
-			malloc_err3(pipex);
+			malloc_err();
 		pipex->command = ft_strjoin(tmp, pipex->cmd_args[0]);
 		free(tmp);
 		if (pipex->pathnames != NULL && pipex->command == NULL)
-			malloc_err3(pipex);
+			malloc_err();
 		if (access(pipex->command, F_OK) == 0)
 			return (0);
 		free(pipex->command);

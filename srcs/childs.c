@@ -6,7 +6,7 @@
 /*   By: gjupy <gjupy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 15:23:51 by gjupy             #+#    #+#             */
-/*   Updated: 2022/08/12 19:18:36 by gjupy            ###   ########.fr       */
+/*   Updated: 2022/08/19 17:02:28 by gjupy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static void	exec_child_prc(char *cmd, char **env, t_pipex *pipex, int i)
 	find_path_line_and_split(env, pipex);
 	pipex->cmd_args = ft_split(cmd, ' ');
 	if (pipex->cmd_args == NULL)
-		malloc_err2(pipex);
+		malloc_err();
 	get_cmd(pipex);
 	if (execve(pipex->command, pipex->cmd_args, env) == -1)
-		execve_err(pipex);
+		err("failed to execute");
 }
 
 static void	child_prc_heredoc(t_pipex *pipex)
@@ -97,13 +97,12 @@ void	create_child_prcs(t_pipex *pipex, char **argv, char **env)
 	{
 		pipex->pids[i] = fork();
 		if (pipex->pids[i] == -1)
-			fork_err(pipex);
+			break ;
 		if (pipex->pids[i] == 0)
 			child_prc(pipex, env, argv, i);
 		if (pipex->here_doc == true)
 			waitpid(pipex->pids[0], NULL, 0);
 	}
 	close_pipes(pipex, -1);
-	close_files(pipex);
 	free_pipes(&pipex->pipes, pipex->nbr_of_pipes - 1);
 }

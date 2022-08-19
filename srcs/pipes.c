@@ -6,7 +6,7 @@
 /*   By: gjupy <gjupy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 15:24:08 by gjupy             #+#    #+#             */
-/*   Updated: 2022/08/12 18:45:06 by gjupy            ###   ########.fr       */
+/*   Updated: 2022/08/19 17:16:23 by gjupy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,14 @@ int	close_pipes(t_pipex *pipex, int child_nbr)
 		i++;
 	}
 	return (rt_status);
+}
+
+void	free_pipes(int ***arr, int len)
+{
+	while (len >= 0)
+	{
+		free((*arr)[len]);
+		len--;
+	}
+	free(*arr);
 }
