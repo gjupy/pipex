@@ -1,5 +1,5 @@
 # pipex
----
+
 ### pipex 42 cursus
 - Result: 125%
 
@@ -16,5 +16,7 @@ For this, the first argument must be set here_doc, as in the example below.
 > ./pipex here_doc STOP cmd1 cmd2 cmd3 ... cmdn outfile
 
 :spiral_notepad: the library used - "libft" - is also a project from the 42cursus. The "ft_printf" function, inside of the "libft" library, is likewise a single project from the schools curriculum, which I added to the library.
+
+---
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)
