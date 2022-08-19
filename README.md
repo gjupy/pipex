@@ -14,6 +14,6 @@ Execute command make and type the command listed below. The arguments will be pr
 The programm also supports « and » when the first argument is "here_doc". This will work similarly to a sequence of commands executed in the shell, for example: cmd << STOP | cmd1 | cmd2 | cmd3 | ... cmdn >> outfile
 For this, the first argument must be set here_doc, as in the example below.
 
-> ./pipex here_doc STOP cmd1 cmd2 cmd3 ... cmdn outfile
+> ./pipex here_doc DELIMITER cmd1 cmd2 cmd3 ... cmdn outfile
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)
