@@ -6,7 +6,7 @@
 /*   By: gjupy <gjupy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 18:49:06 by gjupy             #+#    #+#             */
-/*   Updated: 2022/08/19 17:29:38 by gjupy            ###   ########.fr       */
+/*   Updated: 2022/08/22 10:41:06 by gjupy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	open_file(char **argv, t_pipex *pipex, int file)
 					O_WRONLY | O_CREAT | O_TRUNC, 0777);
 		else if (pipex->here_doc == true)
 			pipex->fd[1] = open(argv[pipex->childs + 2],
-						O_WRONLY | O_CREAT | O_APPEND, 0777);
+					O_WRONLY | O_CREAT | O_APPEND, 0777);
 		if (pipex->fd[1] == -1)
 			err("failed to open outfile");
 	}
