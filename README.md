@@ -1,7 +1,6 @@
 # pipex
 ---
 ### pipex 42 cursus
-- Status: finished
 - Result: 125%
 
 This is a project to reproduce the shell behavior of redirecting STDIN and STDOUT to files and emulating pipes.
